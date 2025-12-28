@@ -4,9 +4,9 @@ A LangGraph Deep Agents project for markets research with dedicated sub-agents f
 
 ## Features
 - Three specialized sub-agents: Analysis (Daytona Python), Web Research (Tavily search), Credibility (fact-checking).
-- Cloud-hosted memory and checkpointer via LangSmith.
-- Automatic context compaction (~170k tokens) built into the framework.
-- Organized scratchpad for notes and reports.
+- Cloud-hosted long-term memory and checkpointer via LangSmith.
+- Terminal file navigation and editing tools for each agent.
+- Organized scratchpad (in state) for intermediate notes and reports.
 
 ## Quick Start
 1. **Install**
@@ -21,7 +21,7 @@ A LangGraph Deep Agents project for markets research with dedicated sub-agents f
    - `LANGSMITH_API_KEY`
    - `LANGSMITH_PROJECT`
    - `LANGSMITH_TRACING` (true/false)
-   - Plot uploads (Cloudinary): `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` (or `CLOUDINARY_UPLOAD_PRESET` for unsigned), optional `CLOUDINARY_PUBLIC_ID_PREFIX` (default plots/). Alternatively, set `CLOUDINARY_URL` (e.g., `cloudinary://<api_key>:<api_secret>@<cloud_name>`).
+   - Plot uploads (Cloudinary): `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `CLOUDINARY_PUBLIC_ID_PREFIX`, `CLOUDINARY_URL`
 3. **Run the LangGraph server** (from `deep-agent/`)
    ```bash
    langgraph dev
@@ -35,7 +35,69 @@ The notebooks in `experiments/` are for testing individual agents, tools, and me
 - `credibility_agent.ipynb`
 - `memory_management.ipynb`
 - `cloudinary_upload_smoke_test.ipynb`
-- `md_to_pdf.ipynb`
+- `daytona_package_test.ipynb`
+
+## Agent Architecture
+
+### Shared Capabilities (All Agents)
+
+Every agent in the system has access to:
+
+| Category | Tools |
+|----------|-------|
+| **File Navigation** | `ls`, `glob`, `grep` |
+| **File Operations** | `read_file`, `write_file`, `edit_file` |
+| **Short-Term Memory** | Shared `/scratchpad` folder in state |
+| **Long-Term Memory** | Persistent database storing lessons learned, high-quality sources, effective research patterns, and prior failures—continuously trimmed and reused for self-improvement |
+
+All agents operate under constraints for tool limits, context compaction, and memory forgetting to manage resources effectively.
+
+---
+
+### Main Orchestrator Agent
+
+The main agent plans, coordinates, and synthesizes the final output. It can dynamically spawn **10+ sub-agents in parallel**, choosing from:
+
+| Sub-Agent | Purpose |
+|-----------|---------|
+| **Analysis** | Runs sandboxed Python for quantitative analysis and data visualization |
+| **Research** | Performs 100+ web searches per task for market, macro, and price-relevant data |
+| **Credibility** | Cross-references claims, evaluates source quality, flags weaknesses |
+| **General Purpose** | Handles general reasoning tasks as needed |
+
+**Responsibilities:**
+- Plans and maintains a to-do list, updating tasks as "completed", "in progress", or "to do"
+- Outputs a final report with plots, images, and recommendations
+
+---
+
+### Research Sub-Agent
+
+- Conducts **100+ web queries** per task using the `web-search` tool
+- Gathers market intelligence, extracts datasets, and tracks source quality with citations
+- Self-improves by learning about source reliability and effective search strategies
+
+---
+
+### Analysis Sub-Agent
+
+- Executes Python code in a **remote sandbox** via the `code-execution` tool
+- Performs time-series analysis, trend detection, correlations, and statistical tests
+- Returns analysis summaries and saves generated plots to urls
+- Learns from historical code execution outcomes
+
+---
+
+### Credibility Sub-Agent
+
+- Delivers a **truthfulness verdict** for each claim:
+  - Claim status and source assessment
+  - Answer quality and recommendations
+  - Final trustworthiness rating
+- Focuses on recency, bias/conflicts, and contradictions
+- Builds institutional knowledge about trustworthy sources and common pitfalls
+
+---
 
 ## Memory Model
 - Persistent store is provided by LangGraph (LangSmith cloud), namespaced per `assistant_id`.
@@ -51,7 +113,6 @@ agents/           # Main agent and sub-agents
 tools/            # Code execution (Daytona) and web search tools
 middleware/       # Memory backend configuration
 experiments/      # Jupyter notebooks for testing agents and memory
-scratchpad/       # Notes and reports written by agents
 langgraph.json    # LangGraph graph definition
 ```
 

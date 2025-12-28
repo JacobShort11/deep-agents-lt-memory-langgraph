@@ -29,8 +29,4 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Temporary workspace (session-specific)
-deep-agent/scratchpad/
-deep-agent/plots/
-
 presentation
