@@ -64,3 +64,28 @@ LangSmith provides the cloud infrastructure for this project:
 - **Checkpointer**: Persists conversation state, enabling pause/resume and time-travel debugging.
 - **Store**: Shared key-value storage where agents read and write memories (e.g., source ratings, research lessons).
 - **Shared Memory**: All agents (main orchestrator and sub-agents) access the same memory store, allowing them to learn from each other and build on previous research.
+
+## Known Limitations & Future Improvements
+
+### Current Limitations
+
+- **File System Concurrency**: Multiple agents write to the shared file system, creating potential race conditions where one agent could overwrite another's changes. This won't crash the database but may cause data loss in edge cases.
+- **Image Handling**: LangGraph Studio and the LangGraph UI do not natively support non-text files (images, PDFs). Currently working around this by uploading generated plots to Cloudinary public URLs.
+- **LangGraph State Constraints**: The framework's state does not currently support binary data (images, data files), requiring workarounds to persist visual outputs to the scratchpad.
+- **Mock Financial Data**: No Bloomberg terminal access for real market data, so plot generation relies on synthetic/mock datasets.
+- **Sandbox Environment**: The Daytona sandbox container has a limited set of Python libraries, restricting the quality of time series visualizations.
+
+### Cost & Performance
+
+- **API Costs**: Running the full agent system incurs non-trivial costs, requiring throttling to stay within budget rather than letting agents run to full potential.
+- **Optimization Opportunities**: Could reduce costs through prompt caching, using smaller models for simpler sub-tasks, and batching API calls where possible.
+
+### Future Improvements
+
+- **Append-Only Memory**: For production, implement append-only memory writes to prevent accidental overwrites between agents.
+- **Custom Sandbox Image**: Build a custom Daytona container image with required libraries (e.g., Plotly for interactive visualizations, additional time series packages).
+- **Enhanced Long-Term Memory**:
+  - Current implementation uses basic file navigation for memory read/write.
+  - Future: Semantic search for retrieving similar past research, memory decay/forgetting mechanisms, and a more scalable architecture for hundreds of memories.
+  - Store structured semantic information (user preferences, domain facts, source reputation scores).
+- **Evaluation Framework**: Create a LangSmith evaluation dataset with representative test cases to benchmark agent performance. This would enable quantified measurement of improvements or regressions with each change, removing guesswork from development iterations.
