@@ -41,10 +41,11 @@ class TestExecutePythonCode:
             mock_daytona.delete.assert_called_once_with(sandbox)
             assert "Output:" in result
 
-            assert sandbox.process.code_run.call_count >= 1
-            call_code = sandbox.process.code_run.call_args_list[-1][0][0]
-            assert "import pandas as pd" in call_code
-            assert "print('hello')" in call_code
+            assert sandbox.process.code_run.call_count == 2
+            setup_code = sandbox.process.code_run.call_args_list[0][0][0]
+            user_code = sandbox.process.code_run.call_args_list[1][0][0]
+            assert "import pandas as pd" in setup_code
+            assert "print('hello')" in user_code
 
     def test_downloads_and_uploads_generated_files(self, tmp_path):
         from tools.code_execution import execute_python_code
