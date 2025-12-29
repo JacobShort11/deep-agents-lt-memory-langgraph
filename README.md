@@ -1,7 +1,7 @@
 # Overview
 **⭐️ This repo builds from the basics of LangGraph to complex long term memory concepts and deep agents.**
 - `deep-agent` contains my implementation of a deep agent capable of running autonomously for 30+ minutes, with it's own folder path and self-improvement mechanisms (this is the cool bit!)
-- `slide-deck.ppt` ppt explaining the theory
+- `slide-deck.pdf` deck explaining the theory
 - `langgraph-tutorial` contains fundamental concepts of langgraph graphs including ST memory, interrupts & streaming. Then covers more sophisticated implementations of LT memory for self-improvement
 
 ## 🤖 What Are Deep Agents?
