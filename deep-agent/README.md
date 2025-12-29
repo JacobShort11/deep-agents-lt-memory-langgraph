@@ -2,6 +2,8 @@
 
 A LangGraph Deep Agents project for markets research with dedicated sub-agents for analysis, web research, and credibility checking.
 
+> **Note:** This demo uses synthetically generated financial data rather than real Bloomberg terminal data. All market data, charts, and visualizations are based on mock datasets for demonstration purposes.
+
 ## Features
 - Three specialized sub-agents: Analysis (Daytona Python), Web Research (Tavily search), Credibility (fact-checking).
 - Cloud-hosted long-term memory and checkpointer via LangSmith.
