@@ -1,22 +1,33 @@
 # Overview
-**⭐️ This repo includes complex long term memory concepts and deep agents in addition to basic LangGraph tutorials.**
 - `deep-agent` contains my implementation of a deep agent capable of running autonomously for 30+ minutes, with it's own folder path and self-improvement mechanisms (this is the cool bit!)
-- `slide-deck.pdf` deck explaining the theory
 - `langgraph-tutorial` contains fundamental concepts of langgraph graphs including ST memory, interrupts & streaming. Then covers more sophisticated implementations of LT memory for self-improvement
-
-## 🤖 What Are Deep Agents?
-- Deep agents (think Claude Code, Deep Research, Manus) use planning tools, have their own file system and can spawn sub-agents to work on long time-horizon tasks...
-- Ever wondered how Deep Research agents can execute 100's of tool calls without getting lost along the way whilst simple ReACT agents get lost of 7-8 steps? Deep agent harnesses are how!
-- Deep agents are SOTA on AGI benchmarks
-![Deep Agents](assets/images/deep-agent.png)
-
-## 🧠 What is Long Term Memory?
-- Long-term memory is everything an agent saves across sessions from past interactions, so it can use previous experiences and knowledge to guide future behaviour instead of “forgetting” each time.
-- It includes episodic memories (what happened and what worked), semantic memories (facts like names and preferences), and procedural memories (how the agent itself operates, via its code or updated system prompt).
-![Context Engineering](assets/images/context-engineering.png)
-
-
-## 👨‍💻 What is LangGraph
-- LangGraph is a framework for orchestrating AI agents as graphs of nodes, letting you control step-by-step flow, add tools, plug in memory, handle failures, and add human-in-the-loop.
-![LangGraph](assets/images/langgraph.png)
-
+- `langgraph-notes` extensive personal demos / notes on LangGraph / LangChain capabilities
+---
+![Slide 1](media/Slide1.png)
+![Slide 2](media/Slide2.png)
+![Slide 3](media/Slide3.png)
+![Slide 4](media/Slide4.png)
+![Slide 5](media/Slide5.png)
+![Slide 6](media/Slide6.png)
+![Slide 7](media/Slide7.png)
+![Slide 8](media/Slide8.png)
+![Slide 9](media/Slide9.png)
+![Slide 10](media/Slide10.png)
+![Slide 11](media/Slide11.png)
+![Slide 12](media/Slide12.png)
+![Slide 13](media/Slide13.png)
+![Slide 14](media/Slide14.png)
+![Slide 15](media/Slide15.png)
+![Slide 16](media/Slide16.png)
+![Slide 17](media/Slide17.png)
+![Slide 18](media/Slide18.png)
+![Slide 19](media/Slide19.png)
+![Slide 20](media/Slide20.png)
+![Slide 21](media/Slide21.png)
+![Slide 22](media/Slide22.png)
+![Slide 23](media/Slide23.png)
+![Slide 24](media/Slide24.png)
+![Slide 25](media/Slide25.png)
+![Slide 26](media/Slide26.png)
+![Slide 27](media/Slide27.png)
+![Slide 28](media/Slide28.png)
