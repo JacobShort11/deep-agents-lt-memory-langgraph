@@ -389,23 +389,17 @@ Use this date and time to know what the given 12 months refers to when assessing
 subagents = [
     {
         "name": "analysis-agent",
-        "description": """Data analysis specialist for processing data, creating visualizations,
-            statistical analysis, and trend identification. Use when you need plots,
-            graphs, calculations, or any code-based analysis.""",
+        "description": """Data analysis specialist for processing data, creating visualizations, statistical analysis, and trend identification. Use when you need plots, graphs, calculations, or any code-based analysis.""",
         "runnable": analysis_agent_graph,
     },
     {
         "name": "web-research-agent",
-        "description": """Web research specialist for searching the internet, gathering information,
-            finding sources, and collecting raw data on topics. Use for initial
-            research and fact-finding. Always call with ONE focused research topic. For multiple topics, call multiple times in parallel""",
+        "description": """Web research specialist for searching the internet, gathering information, finding sources, and collecting raw data on topics. Use for initial research and fact-finding. Always call with ONE focused research topic. For multiple topics, call multiple times in parallel""",
         "runnable": web_research_agent_graph,
     },
     {
         "name": "credibility-agent",
-        "description": """Credibility and fact-checking specialist. Use to verify any questionable research outputs,
-            check source reliability, validate claims, and ensure findings are
-            trustworthy and defensible. ALWAYS use before finalizing reports.""",
+        "description": """Credibility and fact-checking specialist. Use to verify any questionable research outputs, check source reliability, validate claims, and ensure findings are trustworthy and defensible. ALWAYS use before finalizing reports.""",
         "runnable": credibility_agent_graph,
     },
 ]
