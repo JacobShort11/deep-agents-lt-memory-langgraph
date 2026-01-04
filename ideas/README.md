@@ -1,0 +1,1 @@
+place for new ideas and testing... such as making use of agent "skills"
