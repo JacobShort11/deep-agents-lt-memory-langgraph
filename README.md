@@ -1,3 +1,5 @@
+> This is an open-source personal project
+
 # Overview
 - `deep-agent` contains my implementation of a deep agent capable of running autonomously for 30+ minutes, with it's own folder path and self-improvement mechanisms (this is the cool bit!)
 - `langgraph-tutorial` contains fundamental concepts of langgraph graphs including ST memory, interrupts & streaming. Then covers more sophisticated implementations of LT memory for self-improvement
