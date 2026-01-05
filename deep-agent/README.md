@@ -1,3 +1,5 @@
+> This is an open-source personal project
+
 # Deep Research Agent
 
 A LangGraph Deep Agents project for markets research with dedicated sub-agents for analysis, web research, and credibility checking.
