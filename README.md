@@ -1,6 +1,9 @@
 # Overview
 > This is an small open-sourced part of a larger personal project.
 > `deep-agent` contains my implementation of a self-improving deep agent capable of running autonomously for 1+ hours to perform financial analysis.
+- Sandboxed code executing sub-agents capable of training ML models
+- Research sub-agents which learn and remember source reliability in collaboration with credibility checking agents
+- Unified scratchpad file system to share and offload context preventing context rot...
 ---
 ![Slide 1](media/Slide1.png)
 ![Slide 2](media/Slide2.png)
